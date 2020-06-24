@@ -63,4 +63,9 @@ public class ItemServiceImpl implements ItemService {
                     return itemViewModel;
                 }).orElse(null);
     }
+
+    @Override
+    public void delete(String id) {
+        this.itemRepository.deleteById(id);
+    }
 }

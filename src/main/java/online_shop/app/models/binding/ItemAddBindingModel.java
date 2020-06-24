@@ -21,7 +21,7 @@ public class ItemAddBindingModel {
     @Length(min = 3,message = "Description length must be more than three character!")
     private String description;
     @NotNull(message = "Enter valid category name!")
-    private CategoryName category;
+    private CategoryName category ;
     @NotNull(message = "Enter valid gender name!")
     private GenderType gender;
     @DecimalMin(value = "0",message = "Enter valid price!")

@@ -21,7 +21,7 @@
                     <h6 th:text="|Item name - *{name}|"></h6>
                     <p class="card-text" th:text="*{description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi enim, excepturi ha </p>
                     <h6 th:text="*{price}">Price</h6>
-                    <a class="btn btn-danger" >Delete</a>
+                    <a th:href="@{/items/delete/{id}(id = *{id})}" class="btn btn-danger" >Delete</a>
                 </div>
             </div>
         </div>

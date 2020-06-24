@@ -5,6 +5,7 @@ import online_shop.app.models.service.ItemServiceModel;
 import online_shop.app.service.ItemService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,19 +26,25 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @GetMapping("add")
-    public String add() {
+    @GetMapping("/add")
+    public String add(Model model) {
+
+        if (!model.containsAttribute("itemAddBindingModel")) {
+            model.addAttribute("itemAddBindingModel", new ItemAddBindingModel());
+        }
         return "add-item";
     }
 
-    @PostMapping("add")
+    @PostMapping("/add")
     public String addConfirm(@Valid @ModelAttribute("itemAddBindingModel") ItemAddBindingModel itemAddBindingModel,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes
     ) {
-        System.out.println();
+
         if (bindingResult.hasErrors()) {
-            return "redirect:add";
+            redirectAttributes.addFlashAttribute("itemAddBindingModel", itemAddBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.itemAddBindingModel", bindingResult);
+            return "redirect:/items/add";
         }
         this.itemService.addItem(this.modelMapper.map(itemAddBindingModel, ItemServiceModel.class));
 
@@ -45,9 +52,17 @@ public class ItemController {
     }
 
     @GetMapping("/details")
-    public ModelAndView details(@RequestParam("id") String id, ModelAndView modelAndView){
-        modelAndView.addObject("item",this.itemService.findById(id));
+    public ModelAndView details(@RequestParam("id") String id, ModelAndView modelAndView) {
+        modelAndView.addObject("item", this.itemService.findById(id));
         modelAndView.setViewName("details-item");
         return modelAndView;
     }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") String id) {
+
+        this.itemService.delete(id);
+        return "redirect:/";
+    }
+
 }
