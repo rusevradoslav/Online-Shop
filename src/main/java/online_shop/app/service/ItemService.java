@@ -1,6 +1,7 @@
 package online_shop.app.service;
 
 import online_shop.app.models.service.ItemServiceModel;
+import online_shop.app.models.service.UserServiceModel;
 import online_shop.app.models.view.ItemViewModel;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface ItemService {
 
  ItemViewModel findById(String id);
 
-    void delete(String id);
+
+
+    void delete(UserServiceModel user, ItemViewModel item);
 }

@@ -85,13 +85,23 @@ public class UsersController {
         }
 
         UserServiceModel user = this.userService.getUserByUsername(userRegisterBindingModel.getUsername());
+        System.out.println();
+        if (user == null) {
+            if (!userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())) {
+                redirectAttributes.addFlashAttribute("userRegisterBindingModel",userRegisterBindingModel);
+                redirectAttributes.addFlashAttribute("passwordDoesntMatch",true);
+                return "redirect:/users/register";
 
-        if (user == null || userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())) {
-
-            this.userService.register(this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class));
-            return "redirect:/users/login";
+            }else {
+                this.userService.register(this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class));
+                return "redirect:/users/login";
+            }
+        }else {
+            redirectAttributes.addFlashAttribute("userRegisterBindingModel",userRegisterBindingModel);
+            redirectAttributes.addFlashAttribute("alreadyExist",true);
+            return "redirect:/users/register";
         }
-        return "redirect:/";
+
     }
 
     @GetMapping("/logout")

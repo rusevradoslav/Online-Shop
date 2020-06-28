@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -29,5 +30,12 @@ public class UserServiceImpl implements UserService {
     public UserServiceModel getUserByUsername(String username) {
 
         return this.userRepository.findFirstByUsername(username).map(user -> this.modelMapper.map(user,UserServiceModel.class)).orElse(null);
+    }
+
+    @Override
+    public void updateUserBudget(UserServiceModel userServiceModel, BigDecimal newSum) {
+        User user = this.modelMapper.map(userServiceModel,User.class);
+        user.setBudget(newSum);
+        this.userRepository.saveAndFlush(user);
     }
 }

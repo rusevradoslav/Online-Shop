@@ -16,6 +16,8 @@
     <hr class="hr-3"/>
     <form class="mx-auto mb-5 text-center w-25 bg-dark p-3 rounded" th:action="@{/users/register}" th:method="POST"
           th:object="${userRegisterBindingModel}">
+        <h4 th:if="${alreadyExist}" class="text-center bg-dark text-danger">User with that name already exist</h4>
+        <h4 th:if="${passwordDoesntMatch}" class="text-center bg-dark text-danger">Passwords doesn't match</h4>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="username" class="h4 mb-2 text-white">Username</label>

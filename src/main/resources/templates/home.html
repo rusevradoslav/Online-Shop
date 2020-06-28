@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="offers row mx-auto d-flex flex-row justify-content-center">
             <div th:each="i : ${items}" th:object="${i}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
-                <a th:href="@{/items/details/(id = *{id})}"> <!--@RequestParam--><!--/items/details/?id=19bfe350-8f47-4d15-b6fe-ec9521214cc2-->
+                <a th:href="@{/items/details/{id}(id = *{id})}"> <!--@RequestParam--><!--/items/details/?id=19bfe350-8f47-4d15-b6fe-ec9521214cc2-->
                     <div class="card-img-top-wrapper">
                         <img class="card-img-top" th:src="*{imgUrl}" alt="image">
                     </div>

@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import online_shop.app.models.entity.Item;
 import online_shop.app.models.service.CategoryServiceModel;
 import online_shop.app.models.service.ItemServiceModel;
+import online_shop.app.models.service.UserServiceModel;
 import online_shop.app.models.view.ItemViewModel;
 import online_shop.app.repositoy.ItemRepository;
 import online_shop.app.service.CategoryService;
 import online_shop.app.service.ItemService;
+import online_shop.app.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,7 @@ public class ItemServiceImpl implements ItemService {
     private final ModelMapper modelMapper;
     private final ItemRepository itemRepository;
     private final CategoryService categoryService;
+    private final UserService userService;
 
 
     @Override
@@ -65,7 +68,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void delete(String id) {
-        this.itemRepository.deleteById(id);
+    public void delete(UserServiceModel user, ItemViewModel item) {
+        user.getBudget().subtract(item.getPrice());
+        this.userService.updateUserBudget(user,user.getBudget().subtract(item.getPrice()));
+        this.itemRepository.delete(this.modelMapper.map(item,Item.class));
     }
+
+
 }
