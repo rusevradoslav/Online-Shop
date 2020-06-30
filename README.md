@@ -35,16 +35,16 @@ From the details page, they can delete the item if they want.
   
   **Guests** can : 
   
-   - see index page
-   - register 
-   - login
-  
+     - see index page
+     - register 
+     - login
+    
   
   **Users** can : 
   
-   - add item
-   - buy item
-   - view item details
+    - add item
+    - buy item
+    - view item details
     
  Database Diagram Screenshot
  ---
