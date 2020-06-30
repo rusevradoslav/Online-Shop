@@ -23,28 +23,16 @@ From the details page, they can delete the item if they want.
 
 **Without authentication** you can see as a guest : 
 
-  - the index page
-  - the login page
-  - the user registration form
-  
-**With authentication** you can see as a user : 
-
-  - the item details page
-  - the home page
-  - add item page
-  
-  **Guests** can : 
-  
      - see index page
      - register 
      - login
-    
   
-  **Users** can : 
-  
+**With authentication** you can see as a user : 
+
     - add item
     - buy item
     - view item details
+ 
     
  Database Diagram Screenshot
  ---
