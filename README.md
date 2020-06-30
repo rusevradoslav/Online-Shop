@@ -32,7 +32,15 @@ From the details page, they can delete the item if they want.
     - add item
     - buy item
     - view item details
- 
+### Routes
+
+URLs | Description
+---------|---------
+ */* | Index page - login, register
+ */users/register* | Register page -  page where user can register .
+ */users/login* | Login page - page where user can login .
+ */home* | Home page - page where user can see all items.
+ */items/details/{id}* | Item Details page - page where user can see item details.
     
  Database Diagram Screenshot
  ---
