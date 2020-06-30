@@ -37,9 +37,10 @@ From the details page, they can delete the item if they want.
 URLs | Description
 ---------|---------
  */* | Index page - login, register
- */users/register* | Register page -  page where user can register .
- */users/login* | Login page - page where user can login .
+ */users/register* | Register page -  page where user can register.
+ */users/login* | Login page - page where user can login.
  */home* | Home page - page where user can see all items.
+  */items/add* | Item Add page - page where user can add item.
  */items/details/{id}* | Item Details page - page where user can see item details.
     
  Database Diagram Screenshot
